@@ -10,7 +10,10 @@ if envPath.exists():
     load_dotenv(envPath)
 
 SECRET_KEY = os.environ["SECRET_KEY"]
-DEBUG = bool(os.environ["DEBUG"])
+DEBUG = False
+if os.getenv("DEBUG") == 'True':
+    DEBUG = True
+
 ALLOWED_HOSTS = [host.strip() for host in os.environ["ALLOWED_HOSTS"].split(",")]
 
 INSTALLED_APPS = [
