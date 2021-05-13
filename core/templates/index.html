@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical MCQS</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+<body>
+    <header>
+        <a href="/"><h1>Medical MCQs</h1></a>
+        <form action="/">
+            <input name="query" id="search" 
+            value="{{ query }}"
+            placeholder="Search for a specific question" />
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    <main>
+        <aside class="categories">
+            <button id="toggle-categories">Categories</button>
+            <div id="category-wrapper">
+                {% for cat in categories %}
+                    <div class="category {% if cat.name == category %}selected{% endif %}">
+                        {{ cat.name }}
+                    </div>
+                {% endfor %}
+            </div>
+        </aside>
+        <section class="questions">
+            <h1 class="site__title">Category: {%if category %}{{ category }}{% else %}All{% endif %}</h1>
+            <div class="score-board">
+                <span>Total Qns: {{ totalCount }}</span>
+                <span>Score: <span id="score" data-total="{{ questions|length }}">Computing...</span></span>
+                <span style="padding: 5px; cursor: pointer;" id="reset">Reset</span>
+            </div>
+            
+            {% if query %}
+                <p style="color: burlywood;">Showing questions that match: {{ query }}</p>
+                <hr>
+            {% endif %}
+            <div style="display: flex; align-items: center;">
+                <input type="checkbox" id="autoscroll" /> 
+                <label for="autoscroll">Scroll to the next question after answering</label>
+            </div>
+            <h3 class="subtitle">Select the best answer for the following multiple choice questions</h3>
+            <ol class="question_list">
+                {% for question in questions %}
+                <li class="question" data-id="{{ question.id }}">
+                    <p class="question_text">{{ question.question }}</p>
+                    <ul class="options">
+                        {% for option in question.options.all %}
+                            <li class="option" title="Click to answer" data-id="{{ option.id }}">
+                                <span class="marker">{{ option.letter }}</span> <span>{{ option.description }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                    {% if question.answer %}
+                        <div class="answer" data-answer="{{ question.answer.correct_option.id }}">
+                            <h3 class="reveal-answer hidden">Reveal Answer</h3>
+                            <div class="answer-detail collapse">
+                                <p><span class="marker" style="transform: translateX(20px);">{{ question.answer }}</span></p><br/>
+                                <p>{{ question.answer.explanation }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </ol>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if questions.has_previous %}
+                        <a href="?page=1">&laquo; First</a>
+                        <a href="?page={{ questions.previous_page_number }}">Previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+                    </span>
+            
+                    {% if questions.has_next %}
+                        <a href="?page={{ questions.next_page_number }}">Next</a>
+                        <a href="?page={{ questions.paginator.num_pages }}">Last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </section>
+        <div>
+    </main>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html>

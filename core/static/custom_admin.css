@@ -1,0 +1,64 @@
+:root {
+  --header-bg: rgb(6, 68, 88);
+  --header-color: #eee;
+  --accent: rgb(245, 245, 51);
+}
+
+.form-row .delete input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.form-row input,
+textarea {
+  width: 100%;
+  outline: 0;
+  padding: 0.5rem;
+  border-color: powderblue;
+}
+
+.form-row select {
+  width: 100%;
+  outline: 0;
+  border-color: powderblue;
+}
+
+.select2-search__field {
+  border-color: powderblue;
+  outline: 0;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: rgb(145, 175, 204);
+}
+
+#content > h2 {
+  display: none;
+}
+
+#question_form .inline-group .tabular td.original p {
+  display: none;
+}
+
+#question_form .inline-group .tabular tr.has_original td {
+  padding-top: 1rem;
+}
+
+#question_form .inline-related.tabular fieldset.module table th {
+  text-align: center;
+}
+
+.field-letter {
+  width: 50px;
+}
+
+.delete {
+  width: 25px;
+}
+
+.field-question a {
+  color: #444;
+  font-weight: normal;
+  text-decoration: none;
+}
