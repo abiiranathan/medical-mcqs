@@ -6,11 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Medical MCQS</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 <body>
     <header>
-        <a href="/"><h1>Medical MCQs</h1></a>
+        <a href="/" class="branding">
+            <img src="{% static 'icon.jpg' %}" alt="Logo" width="30" height="30"/>
+            <h1>Medical MCQs</h1>
+        </a>
         <form action="/">
             <input name="query" id="search" 
             value="{{ query }}"
@@ -30,6 +35,9 @@
             </div>
         </aside>
         <section class="questions">
+            <div style="text-align: center;">
+                <img src="{% static 'hero.png' %}" height="200" style="max-width: 100%;"/>
+            </div>
             <h1 class="site__title">Category: {%if category %}{{ category }}{% else %}All{% endif %}</h1>
             <div class="score-board">
                 <span>Total Qns: {{ totalCount }}</span>
@@ -89,6 +97,9 @@
             </div>
         </section>
         <div>
+        <footer>
+            <p>&copy; Yo Medical Files (U) Limited</p>
+        </footer>
     </main>
     <script src="{% static 'main.js' %}"></script>
 </body>

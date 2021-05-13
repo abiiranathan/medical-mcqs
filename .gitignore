@@ -4,5 +4,6 @@
 my.cnf
 .vscode
 db.sqlite3
+staticfiles
 __pycache__
 **/__pycache__

@@ -12,6 +12,15 @@
   --answered-color: rgba(202, 69, 158, 0.781);
 }
 
+.branding {
+  display: flex;
+  align-items: center;
+}
+
+.branding img {
+  margin-right: 10px;
+}
+
 body {
   background-color: var(--body-bg);
   min-height: 100vh;
@@ -19,7 +28,7 @@ body {
   font-size: 18px;
   font-size: sans-serif;
   line-height: 1.4;
-  overflow: hidden;
+  padding-bottom: 50px;
 }
 
 a {
@@ -86,10 +95,6 @@ header button:active {
 main {
   display: grid;
   grid-template-columns: auto 1fr;
-  height: calc(100vh - var(--nav-height));
-  max-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .score-board {
@@ -356,4 +361,14 @@ aside .category:hover {
 
 .hidden {
   display: none !important;
+}
+
+footer {
+  background-color: #333;
+  color: #ddd;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
 }
