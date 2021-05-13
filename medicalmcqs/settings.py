@@ -6,10 +6,8 @@ import django_heroku
 BASE_DIR = Path(__file__).resolve().parent.parent
 envPath = BASE_DIR / ".env"
 
-if not envPath.exists():
-    exit(".env file is missing")
-
-load_dotenv(envPath)
+if envPath.exists():
+    load_dotenv(envPath)
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = bool(os.environ["DEBUG"])
